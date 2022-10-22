@@ -2,7 +2,9 @@
 import { onMount } from "svelte";
 import Output from "./Output.svelte";   
 
-let value = 'london';
+export let color;
+
+let value = 'London';
 onMount(() => {
     handleSubmit();
 })
@@ -18,15 +20,17 @@ function handleSubmit(){
         spin = true;
         setTimeout(() => {
             spin = false
-        }, 1000)
+        }, 300)
     }
 }
 </script>
 
 <div>
-    <form on:submit|preventDefault={handleSubmit}>
-        <input class="bg-white p-0.5 rounded-sm border-b-2 focus:border-pink-500 transition-colors focus:outline-none" placeholder="city or country" bind:value>
-        <button class="{spin? 'animate-spin':''}"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <form on:submit|preventDefault={handleSubmit} class="relative mt-4">
+        <input id="input" class=" peer bg-white p-0.5 rounded-sm text-2xl border-b-2 focus:border-black transition-colors focus:outline-none placeholder-transparent" placeholder="City" bind:value>
+        <label for="input" class=" transition-all absolute left-1 -top-4 text-gray-600 text-base peer-placeholder-shown:text-2xl peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-1 peer-focus:-top-4 peer-focus:text-base hover:cursor-text">
+            City</label>
+        <button class="{spin? 'animate-[spin_300ms_ease-in-out]':''} focus:outline-offset-2"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
 </div>
 <Output city={value} eventInput={check}/>

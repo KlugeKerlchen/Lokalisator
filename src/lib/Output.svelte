@@ -45,4 +45,3 @@ function getFormatted(lat, lon){
     <p>Could not find city</p>
   {/if}
 </div>
-<button on:click={getKoordinaten}>Click here</button>
